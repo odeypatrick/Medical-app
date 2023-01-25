@@ -1,23 +1,43 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+// import View from '../routes/dashboard/View'
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    {
+      path: '/',
+      name: "Dashboard",
+      component: () => import("../routes/dashboard/Dashboard.vue"),
+      // beforeEnter(to, from, next) {
+      //   if(store.state.Auth.token) {
+      //     next()
+      //   } else {
+      //     next('/login')
+      //   }
+      // },
+    },
+    {
+      path: '/patient/:id',
+      name: "PatientDetails",
+      component: () => import("../routes/dashboard/components/patient/PatientDetails.vue"),
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: () => import('../routes/settings/Settings.vue') ,
+      // beforeEnter(to, from, next) {
+      //   if(store.state.Auth.token) {
+      //     next()
+      //   } else {
+      //     next('/login?redirect=settings')
+      //   }
+      // }
+    }
 ]
 
 const router = createRouter({
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top
+    return { top: 0 }
+  },
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
