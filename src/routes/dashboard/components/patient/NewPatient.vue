@@ -44,28 +44,28 @@
             <div class="form-area" v-show="stage == 1">
                 <div class="heading">What's the patient name?</div>
 
-                <form>
+                <form @submit.prevent="stage++">
                     <div class="form-group">
                         <label class="colored-text">Surname (Family Name)</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control">
+                            <input type="text" placeholder="Details Here" class="form-control" v-model="formData.lastName" required>
                         </div>
                     </div>
                     <div class="form-group"> 
                         <label class="colored-text">Middle Name</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control">
+                            <input type="text" placeholder="Details Here" class="form-control" v-model="formData.middleName" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="colored-text">First Name (Given Name)</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control">
+                            <input type="text" placeholder="Details Here" class="form-control" v-model="formData.firstName" required>
                         </div>
                     </div>
 
                     <div class="flex">
-                        <button class="btn colored-text" @click.prevent="stage++">Next</button>
+                        <button class="btn colored-text">Next</button>
                         <div class="colored-text">1/2</div>
                     </div>
                 </form>
@@ -74,11 +74,11 @@
             <div class="form-area" v-show="stage == 2">
                 <div class="heading">Other details</div>
 
-                <form @submit.prevent="$emit('close-modal')">
+                <form @submit.prevent="addPatient">
                     <div class="form-group">
                         <label class="colored-text">Gender</label>
                         <div>
-                            <select class="form-control">
+                            <select class="form-control" v-model="formData.gender" required>
                                 <option selected hidden>Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -88,13 +88,13 @@
                     <div class="form-group"> 
                         <label class="colored-text">BirthDate</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control">
+                            <input type="date" placeholder="Details Here" class="form-control" v-model="formData.dob" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="colored-text">Patient Identification</label>
+                        <label class="colored-text">Phone Number</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control">
+                            <input type="text" placeholder="Details Here" class="form-control" v-model="formData.phoneNumber" required>
                         </div>
                     </div>
 
@@ -110,20 +110,42 @@
   </template>
   
   <script>
+import axios from 'axios'
   export default {
     data(){
       return {
         classes: ['new-patient flex-center', 'close-btn flex-center', 'fa fa-times', 'close-btn'],
         show: true,
         stage: 1,
+        formData: {
+            firstName: "",
+            lastName: "",
+            middleName: "",
+            gender: "Select Gender",
+            dob: "",
+            phoneNumber: ""
+        }
       }
     },
     methods: {
       closeModal(e){
         if(this.classes.includes(e.target.className)){
             this.$emit('close-modal')
-            // this.stage = 1;
         }
+      },
+      addPatient(){
+        axios.post(`${this.$store.state.apiUrl}/patient`, this.formData, {
+            headers: {
+                "Authorization": `Bearer ${this.$store.state.auth.token}`
+            }
+        })
+        .then(async res => {
+            console.log(res.data)
+            await this.$store.dispatch('getPatients');
+            // this.stage = 1;
+            this.$emit('close-modal')
+        })
+        .catch(error => console.log(error))
       }
     }
   }

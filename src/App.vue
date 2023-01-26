@@ -21,6 +21,10 @@ export default {
   components: {
     SideNav,
     AppHeader
+  },
+  created(){
+    this.$store.dispatch('autoLogin')
+    this.$store.dispatch('fetchUser')
   }
 }
 </script>
@@ -61,9 +65,5 @@ nav a {
 .flex {
   display: flex;
   justify-content: space-between;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>

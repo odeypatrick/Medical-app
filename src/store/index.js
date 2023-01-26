@@ -1,7 +1,10 @@
 import { createStore } from 'vuex'
+import auth from './auth'
+import patient from './patient'
 
 export default createStore({
   state: {
+    apiUrl: 'http://localhost:5000/api'
   },
   getters: {
   },
@@ -10,5 +13,7 @@ export default createStore({
   actions: {
   },
   modules: {
+    auth,
+    patient
   }
 })

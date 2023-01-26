@@ -3,13 +3,18 @@
    <div class="wrapper">
     <div class="top flex-align">
         <div>
-            <h4>
-            Recent Search
+            <h4 v-if="user?.role == 'Clerk'">
+                <span v-if="isSearching">Search Results for "{{ query }}"</span>
+                <span v-else>Recent Search</span>
+            </h4>
+            <h4 v-else>
+                <span v-if="isSearching">Search Results for "{{ query }}"</span>
+                <span v-else>Patients List in queue</span>
             </h4>
             <h6 class="colored-text">Search Query: Last viewed</h6>
         </div>
 
-        <button class="btn btn-lg" @click="$emit('showModal')" v-if="clerk">Add New Patient</button>
+        <button class="btn btn-lg" @click="$emit('showModal')" v-if="user?.role == 'Clerk'">Add New Patient</button>
     </div>
 
     <div class="results">
@@ -21,29 +26,33 @@
             <div class="label">Telephone Number</div>
             <div class="label">Payment Category</div>
         </div>
-        <router-link to="/patient/1" class="value flex-align">
-            <div class="label1">1</div>
-            <div>004699</div>
-            <div>Felix Anokwu John</div>
-            <div>Male</div>
-            <div>081  2130 2662</div>
-            <div>Out of Pocket</div>
+        <router-link 
+        v-for="patient in patients" 
+        :key="patient.id" 
+        :to="user?.role == 'Nurse' ? `/patient/${patient.patientId}`: '#'" 
+        class="value flex-align">
+            <div class="label1">{{patient?.id }}</div>
+            <div>{{ patient?.patientId  }}</div>
+            <div>{{ patient?.firstName }} {{ patient?.middleName }} {{ patient?.lastName }}</div>
+            <div>{{ patient?.gender }}</div>
+            <div>{{ patient?.phoneNumber }}</div>
+            <div>{{ patient?.paymentCategory }}</div>
         </router-link>
-        <div class="value flex-align">
-            <div class="label1">2</div>
-            <div>004699</div>
-            <div>Felix Anokwu John</div>
-            <div>Male</div>
-            <div>081  2130 2662</div>
-            <div>Out of Pocket</div>
-        </div>
     </div>
    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
+    props: ['patients', 'isSearching', 'query'],
+    computed: {
+        ...mapGetters([
+            'user'
+        ])
+    },
     data() {
         return {
             clerk: true
@@ -65,11 +74,13 @@ export default {
 
     .wrapper h4 {
         color: #707070;
+        font-weight: 600;
     }
 
     .wrapper h6 {
-        font-size: 15px;
+        font-size: 13px;
         margin-bottom: 10px;
+        font-weight: 600;
     }
 
     .top button {
@@ -82,7 +93,7 @@ export default {
     .head > div, .value > div {
         flex: 1;
         padding: 20px;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 600;
         /* align-items: center; */
         display: flex;
@@ -101,5 +112,9 @@ export default {
         background-color: #fff;
         margin-bottom: 10px;
         color: #999999;
+    }
+
+    .results a {
+        text-decoration: none;
     }
 </style>

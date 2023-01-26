@@ -8,23 +8,56 @@
         <h5 class="datetime">12th October, 2022 12:33PM</h5>
     </div>
 
-    <div class="logged-in flex-align colored-text"> 
-        <i class="fa fa-user-circle" style="font-size: 2.5rem;"></i>
-        <div class="info colored-text">
-            <div class="name">OluwaKorede Tunde</div>
-            <div class="role">Clerk(Medical records)</div>
+    <div class="logged-in flex-align colored-text" v-if="isAuthenticated"> 
+        <div class="flex-align">
+            <i class="pi pi-user" style="font-size: 2.5rem; margin-right: 10px"></i>
+            <div class="info colored-text">
+                <div class="name">{{ user?.lastName }} {{ user?.firstName }}</div>
+                <div class="role">{{ user?.role  }} {{ user?.department ? `(${user.department})` : null }}</div>
+            </div>
         </div>
         <div class="flex-align">
-            <i class="fa fa-angle-down" style="font-size: 1rem;margin-right: 10px;"></i>
+            <i class="pi pi-angle-down dropdown" style="font-size: 1rem;margin-right: 10px;"></i>
             <i class="fa fa-message" style="font-size: 1.8rem;"></i>
         </div>
+
+        <!-- <div class="logout">
+            <button>Logout</button>
+        </div> -->
     </div>  
+    
+    <div v-else>
+        <button @click="loginUser" class="btn btn-secondary">Login</button>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex'
 
+export default {
+    computed: {
+        ...mapGetters([
+            'user',
+            'isAuthenticated'
+        ])
+    },
+    created() {
+        this.$store.dispatch('fetchUser')
+    },
+    data(){
+        return {
+            formData: {
+                email: "abigail@gmail.com",
+                password: "password"
+            }
+        }
+    },  
+    methods: {
+        loginUser(){
+            this.$store.dispatch('login', this.formData)
+        }
+    }
 }
 </script>
 
@@ -41,7 +74,8 @@ export default {
     }
 
     .datetime {
-        color: #8D8D8E;
+        color: #a2a2a2;
+        font-weight: 500 !important;
     }
 
     .info .name {
@@ -55,6 +89,6 @@ export default {
     }
 
     .logged-in {
-        width: 280px;
+        gap: 1em;
     }
 </style>

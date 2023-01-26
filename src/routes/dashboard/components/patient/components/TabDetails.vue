@@ -1,12 +1,11 @@
 <template>
     <div class="tab-details">
         <div>
-            <div class="msg" v-if="vital?.temperature">
+            <div class="msg" v-if="!vitals">
                 <small>No Recent Vitals</small>
             </div>
             <div class="vital-info" v-else>
                 <div>Last Checked</div>
-                
                 <div class="vital">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
@@ -16,31 +15,31 @@
 
                     <div class="flex-align">
                         <div class="item">Date:</div>
-                        <div class="value">21/12/23</div>
+                        <div class="value">{{ new Date(vitals?.createdAt).toDateString() }}</div>
                     </div>
                     <div class="flex-align">
                         <div class="item">Temperature</div>
-                        <div class="value">29 C</div>
+                        <div class="value">{{ vitals?.temperature  }}</div>
                     </div>
                     <div class="flex-align">
                         <div class="item">Height</div>
-                        <div class="value">5ft 7</div>
+                        <div class="value">{{ vitals?.height }}</div>
                     </div>
                     <div class="flex-align">
                         <div class="item">Weight</div>
-                        <div class="value">37Kg</div>
+                        <div class="value">{{ vitals?.weight  }}</div>
                     </div>
                     <div class="flex-align">
                         <div class="item">Blood Pressure</div>
-                        <div class="value">456mmHG</div>
+                        <div class="value">{{ vitals?.bloodPressure  }}</div>
                     </div>
                     <div class="flex-align">
                         <div class="item">Pulse rate</div>
-                        <div class="value">23m/s</div>
+                        <div class="value">{{ vitals?.pulseRate  }}</div>
                     </div>
                     <div class="flex-align">
                         <div class="item">BMI</div>
-                        <div class="value">56Kg/ft</div>
+                        <div class="value">{{ vitals?.bmi  }}</div>
                     </div>
                 </div>
             </div>
@@ -53,6 +52,7 @@
 
 <script>
 export default {
+    props: ['vitals'],
     data(){
         return {
             vital: {
@@ -85,8 +85,10 @@ export default {
     }
 
     .vital-info > div:first-child {
-        margin-bottom: 14px;
+        margin-bottom: 15px;
         font-weight: 500;
+        font-size: 14px;
+        font-weight: 600;
     }
 
     .vital {

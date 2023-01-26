@@ -2,31 +2,31 @@
   <div class="search">
    <div class="wrapper flex-align">
     <div class="navigation flex-align colored-text">
-        <div style="margin-right: 10px">
-            <i class="fa fa-arrow-left"></i>
+        <div style="margin-right: 10px" @click="back && $router.push('/')" :class="!back ? 'opaque' : null">
+            <i class="pi pi-arrow-left"></i>
         </div>
-        <div>
-            <i class="fa fa-arrow-right"></i>
+        <div :class="!front ? 'opaque' : null">
+            <i class="pi pi-arrow-right"></i>
         </div>
     </div>
     <div class="mid flex-align">
         <div class="history colored-text">
-            <i class="fa fa-history"></i>
+            <i class="pi pi-history"></i>
         </div>
         <div class="search-box flex-align">
             <div class="icon">
-                <i class="fa fa-search"></i>
+                <i class="pi pi-search"></i>
             </div>
-            <input type="text">
+            <input type="text" @keyup="e => $emit('search-patients', e.target.value)">
             <div  class="filter flex-align">
                 <span>Sort By</span>
-                <i class="fa fa-angle-down"></i>
+                <i class="pi pi-angle-down"></i>
             </div>
         </div>
     </div>
 
     <div class="advanced">
-        <i class="fa fa-filter" style="margin-right: 10px"></i> Advance Search
+        <i class="pi pi-filter" style="margin-right: 10px"></i> Advance Search
     </div>
    </div>
   </div>
@@ -34,7 +34,7 @@
 
 <script>
 export default {
-
+    props: ['back']
 }
 </script>
 
@@ -65,7 +65,7 @@ export default {
         padding-top: 10px;
     }
 
-    .navigation div {
+    .opaque {
         opacity: 0.5;
     }
 
@@ -76,6 +76,7 @@ export default {
         place-items: center;
         background-color: #fff;
         border-radius: 5px;
+        cursor: pointer;
     }
 
     .history {

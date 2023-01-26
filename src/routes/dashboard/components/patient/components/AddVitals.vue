@@ -13,41 +13,41 @@
 
         <div class="form">
             <div class="form-area">
-                <form @submit.prevent="closeModal">
+                <form @submit.prevent="addVitals">
                     <div class="form-group">
                         <label class="colored-text">Temperature</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control" required>
+                            <input type="text" placeholder="Details Here" class="form-control" required v-model="formData.temperature">
                         </div>
                     </div>
                     <div class="form-group"> 
                         <label class="colored-text">Weight</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control" required>
+                            <input type="text" placeholder="Details Here" class="form-control" required v-model="formData.weight">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="colored-text">Height</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control" required>
+                            <input type="text" placeholder="Details Here" class="form-control" required v-model="formData.height">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="colored-text">Blood Pressure</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control" required>
+                            <input type="text" placeholder="Details Here" class="form-control" required v-model="formData.bloodPressure">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="colored-text">Pulse Rate</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control" required>
+                            <input type="text" placeholder="Details Here" class="form-control" required v-model="formData.pulseRate">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="colored-text">Body Mass Index</label>
                         <div>
-                            <input type="text" placeholder="Details Here" class="form-control" required>
+                            <input type="text" placeholder="Details Here" class="form-control" required v-model="formData.bmi">
                         </div>
                     </div>
                     <button class="btn">
@@ -61,6 +61,8 @@
   </template>
   
   <script>
+import axios from 'axios'
+
   export default {
     components: {
       
@@ -69,7 +71,14 @@
       return {
         classes: ['qrcode-page flex-center', 'close-btn flex-center', 'fa fa-times', 'close-btn'],
         show: true,
-        stage: 1,
+        formData: {
+            temperature: "",
+            weight: "",
+            height: "",
+            bloodPressure: "",
+            pulseRate: "",
+            bmi: ""
+        }
       }
     },
     methods: {
@@ -78,6 +87,20 @@
             this.$emit('close-modal')
             // this.stage = 1;
         }
+      },
+      addVitals(){
+        axios.post(`${this.$store.state.apiUrl}/patient/${this.$route.params.id}/vitals`, this.formData, {
+            headers: {
+                "Authorization": `Bearer ${this.$store.state.auth.token}`
+            }
+        })
+        .then(async res => {
+            if(res.data.code === 201) {
+                await this.$store.dispatch('getPatientInfo', this.$route.params.id)
+                this.$emit('close-modal')
+            }
+        })
+        .catch(err => console.log(err))
       }
     }
   }

@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="info">
-        <TabDetails v-on:showModal="addVitals = true"/>
+        <TabDetails v-on:showModal="addVitals = true" :vitals="vitals"/>
         <AddVitals v-on:close-modal="addVitals = false" v-show="addVitals" />
     </div>
   </div>
@@ -18,6 +18,7 @@ import TabDetails from './TabDetails.vue';
 import AddVitals from './AddVitals.vue';
 
 export default {
+    props: ['vitals'],
     components: {
         Tab,
         TabDetails,
