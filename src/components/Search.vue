@@ -17,7 +17,7 @@
             <div class="icon">
                 <i class="pi pi-search"></i>
             </div>
-            <input type="text" @keyup="e => $emit('search-patients', e.target.value)">
+            <input type="text" @keyup="e => $emit('search-patients', e.target.value)" placeholder="Search Patient IDs, names...">
             <div  class="filter flex-align">
                 <span>Sort By</span>
                 <i class="pi pi-angle-down"></i>
@@ -40,8 +40,8 @@ export default {
 
 <style scoped>
     .search  {
-        height: 120px;
-        margin: 20px 0;
+        height: 100px;
+        margin: 10px 0;
         border-top: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
     }
@@ -70,8 +70,8 @@ export default {
     }
 
     .navigation div, .history {
-        height: 40px;
-        width: 40px;
+        height: 30px;
+        width: 30px;
         display: grid;
         place-items: center;
         background-color: #fff;
@@ -80,7 +80,7 @@ export default {
     }
 
     .history {
-        flex: 0.5;
+        /* flex: 0.5; */
         margin-right: 10px;
     }
 
@@ -103,7 +103,7 @@ export default {
         border: none;
         padding: 15px;
         outline: none;
-        font-weight: bold;
+        font-weight: 500;
         color: #707070;
     }
 
@@ -118,5 +118,6 @@ export default {
     
     .wrapper .advanced {
         font-size: 15px;
+        font-weight: 500;
     }
 </style>

@@ -66,4 +66,8 @@ nav a {
   display: flex;
   justify-content: space-between;
 }
+
+.pointer {
+  cursor: pointer;
+}
 </style>

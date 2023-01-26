@@ -9,7 +9,7 @@
             </h4>
             <h4 v-else>
                 <span v-if="isSearching">Search Results for "{{ query }}"</span>
-                <span v-else>Patients List in queue</span>
+                <span v-else>Patient List in queue</span>
             </h4>
             <h6 class="colored-text">Search Query: Last viewed</h6>
         </div>
@@ -33,7 +33,7 @@
         class="value flex-align">
             <div class="label1">{{patient?.id }}</div>
             <div>{{ patient?.patientId  }}</div>
-            <div>{{ patient?.firstName }} {{ patient?.middleName }} {{ patient?.lastName }}</div>
+            <div style="text-transform: capitalize;">{{ patient?.firstName }} {{ patient?.middleName }} {{ patient?.lastName }}</div>
             <div>{{ patient?.gender }}</div>
             <div>{{ patient?.phoneNumber }}</div>
             <div>{{ patient?.paymentCategory }}</div>
@@ -90,28 +90,39 @@ export default {
         color:  #fff;
     }
 
+    .head, .value {
+        padding: 0 30px;
+    }
+
     .head > div, .value > div {
         flex: 1;
         padding: 20px;
         font-size: 14px;
-        font-weight: 600;
-        /* align-items: center; */
         display: flex;
         justify-content: left;
     }
     .label1 {
-        flex:0.5 !important;
+        flex: 0.5 !important;
     }
 
     .head {
-        background-color: #E6E6E6;
+        background-color: #ebebeb;
         margin-bottom: 10px;
+        font-weight: 700;
     }
 
     .value {
         background-color: #fff;
         margin-bottom: 10px;
-        color: #999999;
+        color: #898888;
+        font-weight: 600;
+    }
+
+    .value:hover {
+        border: 1px solid #58aba4;
+        color: #478984;
+        border-radius: 10px;
+        box-shadow: 0px 5px 20px 0px #65c4be56;
     }
 
     .results a {

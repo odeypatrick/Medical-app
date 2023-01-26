@@ -41,8 +41,16 @@ export default {
 </script>
 
 <style scoped>
+    .details {
+        background-color: #fff;
+    }
     .tabs {
         gap: 0.5em;
+        background-color: #ebebeb;
+        height: 80px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        align-items: flex-end;
     }
 
     .tabs > div {

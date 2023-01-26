@@ -26,9 +26,9 @@
                 <div class="flex-align">
                     <div class="hor" :style="stage == 2 ? 'background-color: #478984' : 'background-color: #ccc'"></div>
                     <div class="vert" :style="stage == 2 ? 'background-color: #478984' : 'background-color: #ccc'"></div>
-                    <span :class="stage == 1 ? 'colored-text' : null">
+                    <span :class="stage == 1 ? 'colored-text' : 'pointer'" @click="stage = 1">
                         Name
-                        <i class="fa fa-check-circle" style="color: #478984" v-if="stage == 2"></i>
+                        <i class="pi pi-check-circle" style="color: #478984" v-if="stage == 2"></i>
                     </span>
                 </div>
                 <div class="flex-align">

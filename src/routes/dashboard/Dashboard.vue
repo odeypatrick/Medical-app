@@ -29,9 +29,16 @@ export default {
     methods: {
         searchPatients(search) {
             if (search) {
-                this.$store.state.patient.patients = this.$store.state.patient.allPatients.filter((patient) =>
-                    patient.patientId.toLowerCase().includes(search.toLowerCase())
-                );
+                this.$store.state.patient.patients = this.$store.state.patient.allPatients.filter((patient) => {
+                    const name = `${patient.firstName} ${patient.middleName} ${patient.lastName}`;
+                    const name2 = `${patient.middleName} ${patient.firstName} ${patient.lastName}`
+                    const name3 = `${patient.lastName} ${patient.firstName} ${patient.middleName}`
+                    const name4 = `${patient.lastName} ${patient.middleName} ${patient.firstName}`
+
+                    return patient.patientId.toLowerCase().includes(search.toLowerCase()) ||
+                    name.toLowerCase().includes(search.toLowerCase()) || name2.toLowerCase().includes(search.toLowerCase()) ||
+                    name3.toLowerCase().includes(search.toLowerCase()) || name4.toLowerCase().includes(search.toLowerCase())
+                });
                 this.query = search
                 this.isSearching = true
             } else {
@@ -53,5 +60,8 @@ export default {
 <style scoped>
     .dashboard {
         height:  100vh;
+        width: 100%;
+
+        overflow: auto;
     }
 </style>

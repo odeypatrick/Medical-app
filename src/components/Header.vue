@@ -1,11 +1,11 @@
 <template>
   <div class="header flex-align">
     <div>
-        <h5 class="colored-text">Grace of God Medical Centre</h5>
+        <h5 class="colored-text logo">Grace of God Medical Centre</h5>
     </div>
 
     <div>
-        <h5 class="datetime">12th October, 2022 12:33PM</h5>
+        <h5 class="datetime">{{ date }}</h5>
     </div>
 
     <div class="logged-in flex-align colored-text" v-if="isAuthenticated"> 
@@ -18,7 +18,7 @@
         </div>
         <div class="flex-align">
             <i class="pi pi-angle-down dropdown" style="font-size: 1rem;margin-right: 10px;"></i>
-            <i class="fa fa-message" style="font-size: 1.8rem;"></i>
+            <i class="pi pi-comment" style="font-size: 1.8rem;"></i>
         </div>
 
         <!-- <div class="logout">
@@ -34,6 +34,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import moment from 'moment'
 
 export default {
     computed: {
@@ -48,9 +49,10 @@ export default {
     data(){
         return {
             formData: {
-                email: "abigail@gmail.com",
+                email: "tunde@gmail.com",
                 password: "password"
-            }
+            },
+            date: moment().format("DD MMMM YYYY hh:mmA")
         }
     },  
     methods: {
@@ -63,9 +65,13 @@ export default {
 
 <style scoped>
     .header {
-        padding: 15px 5rem;
+        padding: 15px 4rem;
         margin-bottom: 20px;
         background-color: #fff;
+    }
+
+    .logo {
+        letter-spacing: 0.1em;
     }
 
     .header h5 {
@@ -74,7 +80,7 @@ export default {
     }
 
     .datetime {
-        color: #a2a2a2;
+        color: #8f8f8f;
         font-weight: 500 !important;
     }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="side-bar p-3 bg-white">
     <div class="menu-bar">
-        <i class="fa fa-bars" style="font-size: 20px"></i>
+        <i class="pi pi-bars" style="font-size: 20px"></i>
     </div>
     <div class="links">
         <router-link to="/" exact="">
@@ -26,7 +26,7 @@
             <i class="pi pi-moon"></i>
         </router-link>
 
-        <div class="user-icon">
+        <div class="user-icon colored-text">
             <i class="pi pi-user" style="font-size: 2rem; margin-right: 10px"></i>  
         </div>
     </div> 
@@ -45,8 +45,8 @@ export default {
         box-shadow: 1px -2px 5px 1px#65C4BD3D;
         border-radius: 10px;
         position: fixed;
-        margin-left: 10px;
         top: 100px;
+        width: 80px;
     }
 
     .menu-bar {
@@ -58,15 +58,17 @@ export default {
     .links a {
         display: block;
         color: inherit;
-        font-size: 20px;
-        padding: 15px;
+        font-size: 18px;
+        padding: 10px 13px;
         margin-bottom: 10px;
         border-radius: 5px;
+        text-align: center;
+        width: fit-content
     }
 
     .links a:hover {
-        background-color: #478984;
-        color: #fff;
+        background-color: #f3f3f3;
+        /* color: #fff; */
     }
 
     .links a.router-link-exact-active {

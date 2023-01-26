@@ -10,7 +10,7 @@
                         <i class="pi pi-user" style="font-size: 2.5rem; color: #5c5c5c"></i>
                     </div>
                     <div>
-                        <div class="name">{{ patient.patient?.lastName }} {{ patient.patient?.firstName }}</div> 
+                        <div class="name">{{ patient.patient?.firstName }} {{ patient.patient?.lastName }}</div> 
                         <div class="name-label flex-align">
                             <small class="colored-text">First Name</small>
                             <small class="colored-text">Surname</small>
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="flex-align">
-                    <div>Patient ID: {{ patient?.patientId }}</div> | <div>Outpatient</div>
+                    <div>Patient ID: {{ patient.patient?.patientId }}</div> | <div>Outpatient</div>
                 </div>
             </div>
 
@@ -86,13 +86,16 @@
 
       .name-label {
         width: 170px;
-        font-size: 14px;
+        font-size: 13px;
+        font-style: italic;
+        font-weight: 500;
       }
 
       .user-info .name {
         font-size: 1.5rem;
         font-weight: 600;
         color: #5c5c5c;
+        border-bottom: 1px solid #b9b7b7;
       }
 
       button {
