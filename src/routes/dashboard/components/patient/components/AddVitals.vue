@@ -1,11 +1,11 @@
 <template>
     <div class="new-patient center-element" v-if="show" @click="closeModal">
       <div class="modal-content" id="modal-content">
-        <div class="close-btn" @click="closeModal">
+        <div class="close-btn d-flex justify-content-end pointer" @click="closeModal">
             &times;
         </div>
         
-        <div class="top flex">
+        <div class="top d-flex justify-content-between">
             <div>
                 <h4>Vital Details</h4>
             </div>
@@ -69,7 +69,7 @@ import axios from 'axios'
     }, 
     data(){
       return {
-        classes: ['qrcode-page flex-center', 'close-btn flex-center', 'fa fa-times', 'close-btn'],
+        classes: ['qrcode-page flex-center', 'close-btn d-flex justify-content-end pointer', 'fa fa-times', 'close-btn'],
         show: true,
         formData: {
             temperature: "",
@@ -133,12 +133,6 @@ import axios from 'axios'
       }
   
       .close-btn {
-        display: flex;
-        align-items: right;
-        justify-content: right;
-        margin-bottom: 10px;
-        margin-right: 10px;
-        cursor: pointer;
         color: #999999;
         font-size: 3rem;
       }

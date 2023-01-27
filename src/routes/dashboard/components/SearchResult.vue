@@ -1,7 +1,7 @@
 <template>
   <div class="search-result">
    <div class="wrapper">
-    <div class="top flex-align">
+    <div class="top d-flex justify-content-between align-items-center">
         <div>
             <h4 v-if="user?.role == 'Clerk'">
                 <span v-if="isSearching">Search Results for "{{ query }}"</span>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="results">
-        <div class="head flex-align colored-text">
+        <div class="head d-flex justify-content-between align-items-center colored-text">
             <div class="label label1">S/N</div>
             <div class="label">Patient ID</div>
             <div class="label">Names</div>
@@ -30,7 +30,7 @@
         v-for="patient in patients" 
         :key="patient.id" 
         :to="user?.role == 'Nurse' ? `/patient/${patient.patientId}`: '#'" 
-        class="value flex-align">
+        class="value d-flex justify-content-between align-items-center">
             <div class="label1">{{patient?.id }}</div>
             <div>{{ patient?.patientId  }}</div>
             <div style="text-transform: capitalize;">{{ patient?.firstName }} {{ patient?.middleName }} {{ patient?.lastName }}</div>
@@ -123,6 +123,10 @@ export default {
         color: #478984;
         border-radius: 10px;
         box-shadow: 0px 5px 20px 0px #65c4be56;
+    }
+
+    .value:hover .value > div {
+        padding: 9px;
     }
 
     .results a {

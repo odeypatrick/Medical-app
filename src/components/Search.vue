@@ -1,7 +1,7 @@
 <template>
   <div class="search">
-   <div class="wrapper flex-align">
-    <div class="navigation flex-align colored-text">
+   <div class="wrapper d-flex justify-content-between align-items-center">
+    <div class="navigation d-flex justify-content-between align-items-center colored-text">
         <div style="margin-right: 10px" @click="back && $router.push('/')" :class="!back ? 'opaque' : null">
             <i class="pi pi-arrow-left"></i>
         </div>
@@ -9,16 +9,16 @@
             <i class="pi pi-arrow-right"></i>
         </div>
     </div>
-    <div class="mid flex-align">
+    <div class="mid d-flex justify-content-between align-items-center">
         <div class="history colored-text">
             <i class="pi pi-history"></i>
         </div>
-        <div class="search-box flex-align">
+        <div class="search-box d-flex justify-content-between align-items-center">
             <div class="icon">
                 <i class="pi pi-search"></i>
             </div>
             <input type="text" @keyup="e => $emit('search-patients', e.target.value)" placeholder="Search Patient IDs, names...">
-            <div  class="filter flex-align">
+            <div  class="filter d-flex justify-content-between align-items-center">
                 <span>Sort By</span>
                 <i class="pi pi-angle-down"></i>
             </div>

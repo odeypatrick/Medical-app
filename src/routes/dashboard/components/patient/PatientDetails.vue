@@ -3,15 +3,15 @@
       <Search :back="true"/>
       
       <div class="wrapper">
-        <div class="flex">
+        <div class="d-flex justify-content-between mb-3 align-items-end">
             <div class="user-info">
-                <div class="flex-align">
+                <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <i class="pi pi-user" style="font-size: 2.5rem; color: #5c5c5c"></i>
                     </div>
                     <div>
                         <div class="name">{{ patient.patient?.firstName }} {{ patient.patient?.lastName }}</div> 
-                        <div class="name-label flex-align">
+                        <div class="name-label d-flex justify-content-between align-items-center">
                             <small class="colored-text">First Name</small>
                             <small class="colored-text">Surname</small>
                         </div> 
@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <div class="flex-align">
+                <div class="d-flex justify-content-start align-items-center">
                     <div>Patient ID: {{ patient.patient?.patientId }}</div> | <div>Outpatient</div>
                 </div>
             </div>

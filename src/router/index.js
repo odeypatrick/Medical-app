@@ -12,13 +12,13 @@ const routes = [
       path: '/patient/:id',
       name: "PatientDetails",
       component: () => import("../routes/dashboard/components/patient/PatientDetails.vue"),
-      beforeEnter(to, from, next) {
-        if(store.state.auth.user?.role == 'Nurse') {
-          next()
-        } else {
-          next('/')
-        }
-      }
+      // beforeEnter(to, from, next) {
+      //   if(store.state.auth.user?.role == 'Nurse') {
+      //     next()
+      //   } else {
+      //     next('/')
+      //   }
+      // }
     },
     {
       path: '/settings',

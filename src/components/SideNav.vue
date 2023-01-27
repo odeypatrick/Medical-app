@@ -47,6 +47,8 @@ export default {
         position: fixed;
         top: 100px;
         width: 80px;
+        background-color: #fff;
+        z-index: 1;
     }
 
     .menu-bar {

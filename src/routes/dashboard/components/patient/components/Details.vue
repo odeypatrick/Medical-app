@@ -1,6 +1,6 @@
 <template>
   <div class="details">
-    <div class="tabs flex-align">
+    <div class="tabs d-flex justify-content-between align-items-center">
         <div v-for="(tab, index) in tabs" :key="index" @click="page = index">
             <Tab :value="tab" :active="page === index ? true : false"/>
         </div>
@@ -43,6 +43,7 @@ export default {
 <style scoped>
     .details {
         background-color: #fff;
+        border-radius: 10px;
     }
     .tabs {
         gap: 0.5em;

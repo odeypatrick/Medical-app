@@ -1,5 +1,5 @@
 <template>
-  <div class="header flex-align">
+  <div class="header d-flex justify-content-between align-items-center">
     <div>
         <h5 class="colored-text logo">Grace of God Medical Centre</h5>
     </div>
@@ -8,15 +8,15 @@
         <h5 class="datetime">{{ date }}</h5>
     </div>
 
-    <div class="logged-in flex-align colored-text" v-if="isAuthenticated"> 
-        <div class="flex-align">
+    <div class="logged-in d-flex justify-content-between align-items-center colored-text pointer" v-if="isAuthenticated" @click="$store.dispatch('logoutUser')"  title="Logout"> 
+        <div class="d-flex justify-content-between align-items-center">
             <i class="pi pi-user" style="font-size: 2.5rem; margin-right: 10px"></i>
             <div class="info colored-text">
                 <div class="name">{{ user?.lastName }} {{ user?.firstName }}</div>
                 <div class="role">{{ user?.role  }} {{ user?.department ? `(${user.department})` : null }}</div>
             </div>
         </div>
-        <div class="flex-align">
+        <div class="d-flex justify-content-between align-items-center">
             <i class="pi pi-angle-down dropdown" style="font-size: 1rem;margin-right: 10px;"></i>
             <i class="pi pi-comment" style="font-size: 1.8rem;"></i>
         </div>
@@ -49,7 +49,7 @@ export default {
     data(){
         return {
             formData: {
-                email: "tunde@gmail.com",
+                email: "titi@gmail.com",
                 password: "password"
             },
             date: moment().format("DD MMMM YYYY hh:mmA")

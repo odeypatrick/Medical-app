@@ -1,11 +1,11 @@
 <template>
     <div class="new-patient center-element" v-if="show" @click="closeModal">
       <div class="modal-content" id="modal-content">
-        <div class="close-btn" @click="closeModal">
+        <div class="close-btn d-flex justify-content-end pointer mb-4" @click="closeModal">
             &times;
         </div>
         
-        <div class="top flex">
+        <div class="top d-flex justify-content-between">
             <div>
                 <h4>Register new patient</h4>
                 <div class="italic-text">
@@ -20,10 +20,10 @@
             </div>
         </div>
 
-        <div class="form flex">
+        <div class="form d-flex justify-content-between">
             <div class="process">
                 <h6>Demographics</h6>
-                <div class="flex-align">
+                <div class="d-flex justify-content-start align-items-center">
                     <div class="hor" :style="stage == 2 ? 'background-color: #478984' : 'background-color: #ccc'"></div>
                     <div class="vert" :style="stage == 2 ? 'background-color: #478984' : 'background-color: #ccc'"></div>
                     <span :class="stage == 1 ? 'colored-text' : 'pointer'" @click="stage = 1">
@@ -31,12 +31,12 @@
                         <i class="pi pi-check-circle" style="color: #478984" v-if="stage == 2"></i>
                     </span>
                 </div>
-                <div class="flex-align">
+                <div class="d-flex justify-content-start align-items-center">
                     <div class="hor" :style="stage > 2 ? 'background-color: #478984' : 'background-color: #ccc'"></div>
                     <div class="vert" :style="stage > 2 ? 'background-color: #478984' : 'background-color: #ccc'"></div>
                     <span :class="stage == 2 ? 'colored-text' : null">Others</span>
                 </div>  
-                <div class="flex-align">
+                <div class="d-flex justify-content-start align-items-center">
                     <div class="hor" style="background-color: #ccc"></div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
 
-                    <div class="flex">
+                    <div class="d-flex justify-content-between">
                         <button class="btn colored-text">Next</button>
                         <div class="colored-text">1/2</div>
                     </div>
@@ -98,7 +98,7 @@
                         </div>
                     </div>
 
-                    <div class="flex">
+                    <div class="d-flex justify-content-between">
                         <button class="btn colored-text">Submit</button>
                         <div class="colored-text">{{ stage }}/2</div>
                     </div>
@@ -114,7 +114,7 @@ import axios from 'axios'
   export default {
     data(){
       return {
-        classes: ['new-patient flex-center', 'close-btn flex-center', 'fa fa-times', 'close-btn'],
+        classes: ['new-patient center-element', 'close-btn flex-center', 'fa fa-times', 'close-btn d-flex justify-content-end pointer mb-4'],
         show: true,
         stage: 1,
         formData: {
@@ -130,6 +130,7 @@ import axios from 'axios'
     methods: {
       closeModal(e){
         if(this.classes.includes(e.target.className)){
+            console.log(e.target.className)
             this.$emit('close-modal')
         }
       },
@@ -178,12 +179,6 @@ import axios from 'axios'
       }
   
       .close-btn {
-        display: flex;
-        align-items: right;
-        justify-content: right;
-        margin-bottom: 10px;
-        margin-right: 10px;
-        cursor: pointer;
         color: #999999;
         font-size: 3rem;
       }

@@ -13,31 +13,31 @@
                         </svg>
                     </div>
 
-                    <div class="flex-align">
+                    <div class="d-flex justify-content-start align-items-center mb-2 gap-10">
                         <div class="item">Date:</div>
                         <div class="value">{{ new Date(vitals?.createdAt).toDateString() }}</div>
                     </div>
-                    <div class="flex-align">
+                    <div class="d-flex justify-content-start align-items-center mb-2">
                         <div class="item">Temperature</div>
                         <div class="value">{{ vitals?.temperature  }}</div>
                     </div>
-                    <div class="flex-align">
+                    <div class="d-flex justify-content-start align-items-center mb-2">
                         <div class="item">Height</div>
                         <div class="value">{{ vitals?.height }}</div>
                     </div>
-                    <div class="flex-align">
+                    <div class="d-flex justify-content-start align-items-center mb-2">
                         <div class="item">Weight</div>
                         <div class="value">{{ vitals?.weight  }}</div>
                     </div>
-                    <div class="flex-align">
+                    <div class="d-flex justify-content-start align-items-center mb-2">
                         <div class="item">Blood Pressure</div>
                         <div class="value">{{ vitals?.bloodPressure  }}</div>
                     </div>
-                    <div class="flex-align">
+                    <div class="d-flex justify-content-start align-items-center mb-2">
                         <div class="item">Pulse rate</div>
                         <div class="value">{{ vitals?.pulseRate  }}</div>
                     </div>
-                    <div class="flex-align">
+                    <div class="d-flex justify-content-start align-items-center mb-2">
                         <div class="item">BMI</div>
                         <div class="value">{{ vitals?.bmi  }}</div>
                     </div>
@@ -102,14 +102,9 @@ export default {
         font-size: 14px
     }
 
-    .vital .flex-align {
-        justify-content: flex-start;
-        gap: 1em;
-        margin-bottom: 10px;
-    }
-
     .vital .item {
         font-weight: 700;
+        margin-right: 10px;
     }
 
     .vital .value {
